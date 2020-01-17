@@ -47,6 +47,12 @@ int main()
 	if (ret == 906609) correctSols++;
 	else printf("Problem %i Failed\nOutput: %i\n", numProbs, ret);
 
+	// 7
+	numProbs++;
+	ret = doit.SmallestMultiple(20);
+	if (ret == 232792560) correctSols++;
+	else printf("Problem %i Failed\nOutput: %i\n", numProbs, ret);
+
 	if (numProbs == correctSols) printf("All tests passed\n");
 	else printf("%i failure(s).\n", numProbs - correctSols);
 

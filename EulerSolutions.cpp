@@ -160,3 +160,20 @@ int EulerSolution::LargestPalindromeProduct2(int input) { // this is the slower 
 	}
 	return 0;
 }
+
+bool isDivProb5(int input, int max) {
+	for (int i = 1; i <= max; i++) {
+		if (input % i != 0) return false;
+	}
+	return true;
+}
+
+int EulerSolution::SmallestMultiple(int input) { // will come up with better solution later
+	// 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+	// What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20 ?
+	int i = 1;
+	while (!isDivProb5(i, input)) {
+		i++;
+	}
+	return i;
+}

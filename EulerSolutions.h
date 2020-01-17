@@ -6,4 +6,5 @@ public:
 	long long LargestPrimeFactor(long long input);
 	int LargestPalindromeProduct(int input);
 	int LargestPalindromeProduct2(int input);
+	int SmallestMultiple(int input);
 };
