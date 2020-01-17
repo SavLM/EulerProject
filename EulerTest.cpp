@@ -10,7 +10,7 @@ int main()
 	int numProbs = 0;
 	int correctSols = 0;
 	int ret = 0;
-	/*
+	
 	// 1
 	numProbs++;
 	ret = doit.MultiplesOf3And5(10);
@@ -40,21 +40,15 @@ int main()
 	uret = doit.LargestPrimeFactor(600851475143);
 	if (uret == 6857) correctSols++;
 	else printf("Problem %i Failed\nOutput: %lld\n", numProbs, uret);
-	*/
+	
 	// 6
 	numProbs++;
-	ret = doit.LargestPalindromeProduct(8000);
-	if (ret == 6857) correctSols++;
-	//else printf("Problem %i Failed\nOutput: %i\n", numProbs, ret);
-	if (numProbs == correctSols) printf("All tests passed\n");
-	else printf("There were %i failures.\n", numProbs - correctSols);
+	ret = doit.LargestPalindromeProduct(999);
+	if (ret == 906609) correctSols++;
+	else printf("Problem %i Failed\nOutput: %i\n", numProbs, ret);
 
-	numProbs++;
-	ret = doit.LargestPalindromeProduct(1);
-	if (ret == 6857) correctSols++;
-	//else printf("Problem %i Failed\nOutput: %i\n", numProbs, ret);
 	if (numProbs == correctSols) printf("All tests passed\n");
-	else printf("There were %i failures.\n", numProbs - correctSols);
+	else printf("%i failure(s).\n", numProbs - correctSols);
 
 	return 0;
 

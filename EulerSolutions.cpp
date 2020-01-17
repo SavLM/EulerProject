@@ -88,7 +88,6 @@ bool isPalindrome(int input) {
 	int i = dig;
 	int a = 0;
 	int z = 0;
-	printf("dig: %i, input: %i\n", dig, input);
 	while (i >= (dig/2)) {
 		// first digit
 		int a1 = input / (int)pow(10, i - 1);
@@ -98,24 +97,66 @@ bool isPalindrome(int input) {
 		int z1 = input / (int)pow(10, dig - i);
 		int z2 = 10 * (input / (int)pow(10, dig - i+1));
 		z = z1 - z2;
-		printf("a1: %i, a2: %i, a: %i && z: %i\n", a1, a2, a, z);
 		if (a != z) return false;
 		i--;
 	}
+	// printf("%i is  Palindrome\n", input);
 	return true;
 }
 
 int EulerSolution::LargestPalindromeProduct(int input) {
 	// A palindromic number reads the same both ways.The largest palindrome made from the product of two 2 - digit numbers is 9009 = 91 × 99.
 	// Find the largest palindrome made from the product of two 3 - digit numbers.
-	/*unsigned int ret;
-	unsigned int n1 = 999;
-	unsigned int n2 = 999;
-	while ((n1 > 0) && (n2 > 0)) {
-		if(n1 * n2)
-	}*/
-	bool ret = isPalindrome(input);
-	if (ret) printf("%i is a palindrome\n", input);
-	else printf("%i is not a palindrome\n", input);
-	return input;
+	unsigned int ret;
+	unsigned int n1 = input;
+	unsigned int n2 = input;
+	unsigned int sub2 = 0;
+	unsigned int tempPal = 0;
+	bool ready = false;
+	int tempn = 0;
+	int temp = 1;
+	while ((input * input) / temp >= 10) {
+		temp *= 10;
+	}
+	while (n1 > 99) {
+		while ((n2 > 99) && (n2 >= input - sub2)) {
+			// printf("tempPal: %i, tempn: %i, mustbelessthan: %i, n1: %i, n2: %i, n1*n2: %i\n", tempPal, tempn, (tempPal - (temp)), n1, n2, n1*n2);
+			if (isPalindrome(n1 * n2) && ((n1 * n2) > tempPal)) {
+				tempPal = n1 * n2;
+				ready = true;
+			}
+			tempn = n1 * n2;
+			n2--;
+		}
+		if (tempPal > 0 && tempn <= (tempPal - temp)) return tempPal;
+		n1--;
+		sub2++;
+		n2 = input;
+	}
+	return 0;
+}
+
+int EulerSolution::LargestPalindromeProduct2(int input) { // this is the slower solution to prove I wasn't crazy making the first one so complicated
+	// A palindromic number reads the same both ways.The largest palindrome made from the product of two 2 - digit numbers is 9009 = 91 × 99.
+	// Find the largest palindrome made from the product of two 3 - digit numbers.
+	unsigned int ret;
+	unsigned int checki = input;
+	unsigned int checkj = input;
+	unsigned int tempPal = 0; 
+	int temp = 1;
+	while (input / temp >= 10) {
+		temp *= 10;
+	}
+	for (int i = input; i > 99; i--) {
+		for (int j = input; j > 99; j--) {
+			// printf("tempPal: %i, checki: %i, checkj: %i, i: %i, j: %i, i*j: %i\n", tempPal, checki, checkj, i, j, i*j);
+			if (isPalindrome(i * j) && ((i * j) > tempPal)) {
+				tempPal = i * j;
+				checki = i - temp;
+				checkj = j;
+			}
+			else if ((tempPal > 0) && (checki == i) && (checkj == j)) return tempPal;
+		}
+	}
+	return 0;
 }
